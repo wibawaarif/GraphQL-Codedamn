@@ -1,0 +1,28 @@
+{
+  "name": "graphql-codedamn",
+  "version": "1.0.0",
+  "description": "GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data. It is widely used by many companies and it is a must have skill in any developers resume nowadays. In this course we will introduce the topics in a beginner friendly manner, whilst gradually increasing the complexity of the topics.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wibawaarif/GraphQL-Codedamn.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wibawaarif/GraphQL-Codedamn/issues"
+  },
+  "homepage": "https://github.com/wibawaarif/GraphQL-Codedamn#readme",
+  "dependencies": {
+    "apollo-server": "^3.12.0",
+    "graphql": "^16.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
