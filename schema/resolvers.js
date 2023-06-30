@@ -1,4 +1,4 @@
-const { UserList, posts } = require('../FakeData')
+let { UserList, posts } = require('../FakeData')
 
 
 const resolvers = {
@@ -28,6 +28,25 @@ const resolvers = {
       user.id = lastId + 1
       UserList.push(user)
       return user
+    },
+    updateUser: (parent, args) => {
+      const user = args.input
+
+      const index = UserList.findIndex(x => Number(x.id) === Number(user.id))
+      if (index === -1) {
+        return "ID Not Found"
+      }
+      UserList[index] = {
+        ...user
+      }
+      return UserList[index]
+    },
+    deleteUser: (parent, args) => {
+      console.log('test');
+      const id = args.id
+      const index = UserList.findIndex(x => Number(x.id) === Number(id))
+      UserList.splice(index, 1)
+      return null
     }
   }
 }

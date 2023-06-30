@@ -36,8 +36,20 @@ const typeDefs = gql`
     condition: UserAvailability = AVAILABLE
   }
 
+  input UpdateUserInput {
+    id: ID!
+    name: String
+    firstName: String
+    lastName: String
+    age: Int
+    nationality: String
+    condition: UserAvailability
+  }
+
   type Mutation {
     createUser(input: CreateUserInput!): User
+    updateUser(input: UpdateUserInput!): User
+    deleteUser(id: ID!): User
   }
 
   enum UserAvailability {
