@@ -42,7 +42,6 @@ const resolvers = {
       return UserList[index]
     },
     deleteUser: (parent, args) => {
-      console.log('test');
       const id = args.id
       const index = UserList.findIndex(x => Number(x.id) === Number(id))
       UserList.splice(index, 1)
