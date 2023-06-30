@@ -20,6 +20,15 @@ const resolvers = {
     posts: () => {
       return posts.filter((x) => x.isTrending === true)
     }
+  },
+  Mutation: {
+    createUser: (parent, args) => {
+      const user = args.input
+      const lastId = UserList.length
+      user.id = lastId + 1
+      UserList.push(user)
+      return user
+    }
   }
 }
 

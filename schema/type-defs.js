@@ -27,6 +27,19 @@ const typeDefs = gql`
     post(title: String!): Post!
   }
 
+  input CreateUserInput {
+    name: String = "John"
+    firstName: String!
+    lastName: String
+    age: Int!
+    nationality: String!
+    condition: UserAvailability = AVAILABLE
+  }
+
+  type Mutation {
+    createUser(input: CreateUserInput!): User
+  }
+
   enum UserAvailability {
     AVAILABLE
     UNAVAILABLE
