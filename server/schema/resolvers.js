@@ -3,8 +3,15 @@ let { UserList, posts } = require('../FakeData')
 
 const resolvers = {
   Query: {
-    users: () => {
-      return UserList;
+    users: (parent,args, contextValue, info) => {
+      // why not just return UserList ? because we redefined the union type on type-defs.js like users: [User!]!
+      if (UserList) return { users: UserList }
+
+
+      // send to union resolver UserList
+      return {
+        message: "There was an error!"
+      }
     },
     user: (_, args) => { // this is the case if you want just grab args argument, the entire argument is (parent, args, contextValue, info)
       return UserList.find((x) => x.id === args.id)
@@ -47,9 +54,44 @@ const resolvers = {
       UserList.splice(index, 1)
       return null
     }
+  },
+  UserResult: {
+    __resolveType(obj) {
+      // sent by users Query
+      if (obj.users) {
+        return "SuccessFetchingUsers" // defined on type defs union
+      }
+
+      if (obj.message) {
+        return "FailedFetchingUsers"
+      }
+
+      return null
+    }
   }
 }
 
 module.exports = {
   resolvers
 }
+
+/*
+# example query using union
+query GetAllUsers {
+    users {
+  ...on SuccessFetchingUsers {
+        users {
+            id
+            name
+            firstName
+            lastName
+            age
+        }
+    }
+    
+    ...on FailedFetchingUsers {
+        message
+    }
+    }
+}
+*/

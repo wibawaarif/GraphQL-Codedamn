@@ -21,7 +21,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    users: [User!]!
+    users: UserResult
     user(id: Int!): User!
     posts: [Post!]!
     post(title: String!): Post!
@@ -56,6 +56,17 @@ const typeDefs = gql`
     AVAILABLE
     UNAVAILABLE
   }
+
+  type FailedFetchingUsers {
+    message: String
+  }
+
+  type SuccessFetchingUsers {
+    users: [User!]!
+  }
+
+  union UserResult = SuccessFetchingUsers | FailedFetchingUsers
+
 `
 
 module.exports = {
